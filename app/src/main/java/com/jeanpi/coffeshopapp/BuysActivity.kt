@@ -1,7 +1,6 @@
 package com.jeanpi.coffeshopapp
 
 import android.content.Context
-import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.widget.Button
@@ -82,12 +81,6 @@ class BuysActivity : AppCompatActivity() {
         }
 
 
-    }
-
-    private fun navigateToViewBuys() {
-        val intent = Intent(this, ViewBuysActivity::class.java)
-        intent.putExtra("id", id)
-        startActivity(intent)
     }
 
     private fun validateInputs(): Boolean {
@@ -232,9 +225,6 @@ class BuysActivity : AppCompatActivity() {
             val request = JsonObjectRequest(
                 Request.Method.POST, "https://api-flask-fqgf.onrender.com/saveBuy", requestBody,
                 { response ->
-                    val successMessage =
-                        response.optString("message", "Compra guardada correctamente")
-                    Toast.makeText(this, successMessage, Toast.LENGTH_SHORT).show()
                     buyList.clear()
                     repaintTable()
                 },

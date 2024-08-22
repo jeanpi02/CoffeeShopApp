@@ -66,9 +66,21 @@ class RegisterPaymentActivity : AppCompatActivity() {
             },
             { error ->
                 error.printStackTrace()
+
+                // Extraer el mensaje de error del servidor
+                val errorMessage = error.networkResponse?.data?.let { data ->
+                    try {
+                        // Convertir los bytes a String y luego a JSONObject
+                        val errorJson = JSONObject(String(data))
+                        errorJson.optString("error", "Error al registrar el pago")
+                    } catch (e: Exception) {
+                        "Error al registrar el pago"
+                    }
+                } ?: "Error al registrar el pago"
+
                 Toast.makeText(
                     this,
-                    "Error al registrar el pago: ${error.message}",
+                    errorMessage,
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -76,4 +88,5 @@ class RegisterPaymentActivity : AppCompatActivity() {
 
         volleySingleton.requestQueue.add(jsonObjectRequest)
     }
+
 }

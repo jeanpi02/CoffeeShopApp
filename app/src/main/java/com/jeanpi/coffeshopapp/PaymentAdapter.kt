@@ -17,7 +17,7 @@ class PaymentAdapter(private val paymentList: List<Payment>) :
     override fun onBindViewHolder(holder: PaymentViewHolder, position: Int) {
         val payment = paymentList[position]
         holder.tvFecha.text = payment.fecha
-        holder.tvMontoPagado.text = payment.montoPagado
+        holder.tvMontoPagado.text = "$"+payment.montoPagado
     }
 
     override fun getItemCount(): Int {

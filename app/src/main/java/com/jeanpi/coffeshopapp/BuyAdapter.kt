@@ -26,7 +26,7 @@ class BuyAdapter(private val buyList: List<Buy>) :
         holder.tipoPagoTextView.text = buy.tipoPago
         holder.fechaTextView.text = buy.fecha
         holder.productoTextView.text = buy.producto
-        holder.precioTextView.text = buy.precio
+        holder.precioTextView.text = "$"+buy.precio
     }
 
     override fun getItemCount(): Int {

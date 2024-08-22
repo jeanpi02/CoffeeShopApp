@@ -9,7 +9,7 @@ class ClientAdapter(private val clients: List<Client>) : RecyclerView.Adapter<Cl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.client, parent, false)
+            .inflate(R.layout.client_item, parent, false)
         return ClientViewHolder(itemView)
     }
 
@@ -24,11 +24,11 @@ class ClientAdapter(private val clients: List<Client>) : RecyclerView.Adapter<Cl
         holder.itemView.setOnClickListener {
             // Crear un Intent para iniciar la nueva actividad
             val context = holder.itemView.context
-            val intent = Intent(context, BuysActivity::class.java)
+            val intent = Intent(context, ClientOptionsActivity::class.java)
 
             // Pasar los datos del cliente a la nueva actividad
             intent.putExtra("id", cliente.id)
-            intent.putExtra("name" , cliente.name)
+            intent.putExtra("name", cliente.name)
 
             // Iniciar la actividad
             context.startActivity(intent)

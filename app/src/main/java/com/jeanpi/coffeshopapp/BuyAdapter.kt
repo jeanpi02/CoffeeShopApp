@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BuyAdapter(private val buyList: List<Buy>) : RecyclerView.Adapter<BuyAdapter.BuyViewHolder>() {
+class BuyAdapter(private val buyList: List<Buy>) :
+    RecyclerView.Adapter<BuyAdapter.BuyViewHolder>() {
 
     class BuyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tipoPagoTextView: TextView = itemView.findViewById(R.id.tvTipoPago)

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etMontoPagado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Monto Pagado"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnRegistrarPago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar Pago"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

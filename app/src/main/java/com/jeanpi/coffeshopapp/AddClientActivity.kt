@@ -1,7 +1,6 @@
 package com.jeanpi.coffeshopapp
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -10,17 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
-import com.jeanpi.coffeshopapp.R.id.edtName
-import org.json.JSONException
 import org.json.JSONObject
 
 class AddClientActivity : AppCompatActivity() {
     private lateinit var edtName: EditText
     private lateinit var edtBalance: EditText
-    private lateinit var btnAddClient:Button
+    private lateinit var btnAddClient: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +48,7 @@ class AddClientActivity : AppCompatActivity() {
     }
 
     private fun SendPostNewCliente(requestBody: JSONObject) {
-        val url = "https://smoothly-welcomed-hen.ngrok-free.app/saveClient"
+        val url = "https://api-flask-fqgf.onrender.com/saveClient"
 
         val volleySingleton = VolleySingleton.getInstance(this)
 

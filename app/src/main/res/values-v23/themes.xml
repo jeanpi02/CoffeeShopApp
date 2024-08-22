@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.CoffeShopApp" parent="Base.Theme.CoffeShopApp">
         <!-- Transparent system bars for edge-to-edge. -->

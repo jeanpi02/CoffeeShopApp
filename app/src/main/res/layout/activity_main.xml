@@ -12,38 +12,38 @@
         android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Bienvenido a CoffeeShop"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botón para ver clients (reemplazado el botón "Go") -->
+    <!-- Botón para agregar nuevo cliente -->
+
     <Button
         android:id="@+id/btnViewClients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ver Clientes"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="88dp"
+        android:text="Clientes y Compras"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddClient"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
-    <!-- Botón para agregar nuevo cliente -->
     <Button
         android:id="@+id/btnAddClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="Agregar Nuevo Cliente"
-        app:layout_constraintTop_toBottomOf="@+id/btnViewClients"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewClients" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

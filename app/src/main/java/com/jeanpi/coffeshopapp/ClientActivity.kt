@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.*
+import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import org.json.JSONArray
 import org.json.JSONException
@@ -51,7 +51,7 @@ class ClientActivity : AppCompatActivity() {
             return
         }
 
-        val url = "https://smoothly-welcomed-hen.ngrok-free.app/getClients"
+        val url = "https://api-flask-fqgf.onrender.com/getClients"
         val volleySingleton = VolleySingleton.getInstance(this)
 
         val jsonArrayRequest = JsonArrayRequest(
@@ -93,7 +93,8 @@ class ClientActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo != null && networkInfo.isConnected
     }

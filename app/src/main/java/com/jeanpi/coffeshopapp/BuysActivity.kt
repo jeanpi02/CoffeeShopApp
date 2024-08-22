@@ -29,10 +29,9 @@ import java.util.Locale
 class BuysActivity : AppCompatActivity() {
     var id = 0
     private lateinit var btnAddBuy: Button
-    private lateinit var btnShowDetail: ImageButton
     private lateinit var txtFechaSistema: TextView
     private lateinit var etName: TextView
-    private lateinit var tvTotal:TextView
+    private lateinit var tvTotal: TextView
     private lateinit var productoEditText: EditText
     private lateinit var precioEditText: EditText
     private lateinit var agregarButton: Button
@@ -59,13 +58,13 @@ class BuysActivity : AppCompatActivity() {
 
     private fun initComponents() {
         txtFechaSistema = findViewById(R.id.etFecha)
-        etName = findViewById(R.id.tvCliente)
+        etName = findViewById(R.id.tvClient)
         productoEditText = findViewById(R.id.etProducto)
         precioEditText = findViewById(R.id.etPrecio)
         agregarButton = findViewById(R.id.btnAdd)
         tableLayout = findViewById(R.id.tableProducts)
         btnAddBuy = findViewById(R.id.btnSaveBuy)
-        btnShowDetail = findViewById(R.id.btnDetail)
+
         currentDate = getCurrentDate()
         tvTotal = findViewById(R.id.totalC)
     }
@@ -82,9 +81,7 @@ class BuysActivity : AppCompatActivity() {
             sendBuys()
         }
 
-        btnShowDetail.setOnClickListener {
-            navigateToViewBuys()
-        }
+
     }
 
     private fun navigateToViewBuys() {
@@ -165,8 +162,8 @@ class BuysActivity : AppCompatActivity() {
 
                     setOnClickListener {
                         AlertDialog.Builder(this@BuysActivity)
-                            .setTitle("Eliminar fila")
-                            .setMessage("¿Estás seguro de que deseas eliminar esta fila?")
+                            .setTitle("Eliminar Producto")
+                            .setMessage("¿Estás seguro de que deseas eliminar este producto?")
                             .setPositiveButton("Sí") { _, _ ->
                                 removeRowFromTable(buy)
                             }
@@ -217,7 +214,8 @@ class BuysActivity : AppCompatActivity() {
             val precio = (row.getChildAt(3) as TextView).text.toString().toDoubleOrNull()
 
             if (precio == null) {
-                Toast.makeText(this, "El precio de un producto es inválido", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "El precio de un producto es inválido", Toast.LENGTH_LONG)
+                    .show()
                 allRequestsSucceeded = false
                 break
             }
@@ -232,29 +230,35 @@ class BuysActivity : AppCompatActivity() {
 
             val volleySingleton = VolleySingleton.getInstance(this)
             val request = JsonObjectRequest(
-                Request.Method.POST, "https://smoothly-welcomed-hen.ngrok-free.app/saveBuy", requestBody,
+                Request.Method.POST, "https://api-flask-fqgf.onrender.com/saveBuy", requestBody,
                 { response ->
-                    val successMessage = response.optString("message", "Compra guardada correctamente")
+                    val successMessage =
+                        response.optString("message", "Compra guardada correctamente")
                     Toast.makeText(this, successMessage, Toast.LENGTH_SHORT).show()
                     buyList.clear()
                     repaintTable()
                 },
                 { error ->
                     allRequestsSucceeded = false
-                    Toast.makeText(this, "Error al guardar la compra: ${error.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this,
+                        "Error al guardar la compra: ${error.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             )
             volleySingleton.requestQueue.add(request)
         }
 
         if (allRequestsSucceeded) {
-            Toast.makeText(this, "Todas las compras se guardaron correctamente", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Todas las compras se guardaron correctamente", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
 
     private fun displayCurrentDate() {
-        txtFechaSistema.text =currentDate
+        txtFechaSistema.text = currentDate
     }
 
     private fun getCurrentDate(): String {
@@ -269,7 +273,6 @@ class BuysActivity : AppCompatActivity() {
     }
 
 
-
     private fun createTextView(text: String): TextView {
         return TextView(this).apply {
             this.text = text
@@ -278,32 +281,10 @@ class BuysActivity : AppCompatActivity() {
         }
     }
 
-    private fun SendPostNewBuy(jsonBody: JSONObject) {
-        if (!isNetworkAvailable()) {
-            Toast.makeText(this, "No hay conexión a Internet", Toast.LENGTH_LONG).show()
-            return
-        }
-
-        val url = "https://smoothly-welcomed-hen.ngrok-free.app/saveBuy"
-
-        val volleySingleton = VolleySingleton.getInstance(this)
-
-        val request = JsonObjectRequest(
-            Request.Method.POST, url, jsonBody,
-            { response ->
-                Toast.makeText(this, response.getString("message"), Toast.LENGTH_LONG).show()
-            },
-            { error ->
-                error.printStackTrace()
-                Toast.makeText(this, "Error: ${error.message}", Toast.LENGTH_LONG).show()
-            }
-        )
-
-        volleySingleton.requestQueue.add(request)
-    }
     @Suppress("DEPRECATION")
     private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo != null && networkInfo.isConnected
     }
